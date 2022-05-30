@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 
+const message = { message: 'Inicializando o projeto Store Manger!' };
+
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
