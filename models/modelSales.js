@@ -5,7 +5,7 @@ const getSales = async () => {
   `SELECT sa.id AS saleId, date, sp.product_id AS productId, quantity
   FROM sales AS sa
   INNER JOIN sales_products AS sp
-  ON (sa.id = sp.sale_id)`,
+  ON sa.id = sp.sale_id`,
   );
   
   return position1;
@@ -13,7 +13,7 @@ const getSales = async () => {
 
 const getSalesById = async (id) => {
   const [position1] = await connection.execute(
-    `SELECT sp.sale_id, date, sp.product_id AS productId, quantity
+    `SELECT date, sp.product_id AS productId, quantity
     FROM sales AS sa
     INNER JOIN sales_products AS sp
     ON sa.id = sp.sale_id
