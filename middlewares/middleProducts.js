@@ -23,7 +23,7 @@ const quantityValidation = (req, res, next) => {
         message: '"quantity" must be greater than or equal to 1' });
     }
   } catch (error) {
-    return res.status(400).send({ message: error.message });
+    return res.status(400).send({ error: error.message });
   }
   next();
 };
