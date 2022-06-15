@@ -11,4 +11,6 @@ products.get('/:id', controllerProducts.getProductsById);
 
 products.post('/', nameValidation, quantityValidation, controllerProducts.createNewProduct);
 
+products.put('/:id', nameValidation, quantityValidation, controllerProducts.updateProduct);
+
 module.exports = products;
