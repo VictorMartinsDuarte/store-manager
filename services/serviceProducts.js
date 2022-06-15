@@ -4,7 +4,7 @@ const getProducts = async () => modelProducts.getProducts();
 
 const getProductsById = async (id) => modelProducts.getProductsById(id);
 
-const createNewProduct = async ({ name, quantity }) => {
+const createNewProduct = async (name, quantity) => {
   const allProducts = await getProducts();
   const product = allProducts.find((prod) => prod.name === name);
   if (product) return undefined;

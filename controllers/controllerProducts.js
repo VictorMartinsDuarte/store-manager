@@ -17,7 +17,7 @@ const getProductsById = async (req, res) => {
 const createNewProduct = async (req, res) => {
   const { name, quantity } = req.body;
   const product = await serviceProducts.createNewProduct(name, quantity);
-  if (!product) return res.status(400).send({ message: 'Product already exists' });
+  if (!product) return res.status(409).send({ message: 'Product already exists' });
   return res.status(201).json(product);
 };
 
