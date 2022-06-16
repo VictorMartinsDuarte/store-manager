@@ -13,4 +13,6 @@ sales.post('/', idValidation, quantityValidation, controllerSales.createNewSale)
 
 sales.put('/:id', quantityValidation, controllerSales.updateSale);
 
+sales.delete('/:id', controllerSales.deleteSale);
+
 module.exports = sales;
