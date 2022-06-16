@@ -11,4 +11,6 @@ sales.get('/:id', controllerSales.getSalesById);
 
 sales.post('/', idValidation, quantityValidation, controllerSales.createNewSale);
 
+sales.put('/:id', quantityValidation, controllerSales.updateSale);
+
 module.exports = sales;

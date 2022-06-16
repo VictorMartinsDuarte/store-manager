@@ -11,8 +11,15 @@ const createNewSale = async (newSales) => {
   return { id: newSaleId, itemsSold: newSales };
 };
 
+const updatedSale = async (id, updateInfo) => {
+  await updateInfo
+    .map(({ productId, quantity }) => modelSales.updateSale(id, productId, quantity));
+  return { saleId: id, itemUpdated: updateInfo };
+};
+
 module.exports = {
   getSales,
   getSalesById,
   createNewSale,
+  updatedSale,
 };
