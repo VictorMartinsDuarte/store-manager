@@ -9,6 +9,6 @@ sales.use(express.json());
 sales.get('/', controllerSales.getSales);
 sales.get('/:id', controllerSales.getSalesById);
 
-sales.post('/', idValidation, quantityValidation);
+sales.post('/', idValidation, quantityValidation, controllerSales.createNewSale);
 
 module.exports = sales;
