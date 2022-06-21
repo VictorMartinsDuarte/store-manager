@@ -30,14 +30,14 @@ describe('Test on model layer for products', () => {
   })  
   
   describe('Test function getProductsById', () => {
-    const product = { id: 1, name: 'Martelo de Thor', quantity: 10 };
+    const product = [{ id: 1, name: 'Martelo de Thor', quantity: 10 }];
 
     beforeEach(() => {
-      sinon.stub(modelProducts, 'getProductsById').resolves(product);
+      sinon.stub(connection, 'execute').resolves([product]);
     });
 
     afterEach(() => {
-      modelProducts.getProductsById.restore();
+      connection.execute.restore();
     })
 
     it('Returns just one product by id', async () => {
@@ -48,4 +48,26 @@ describe('Test on model layer for products', () => {
       expect(response).to.have.property('quantity');
     });
   });
+
+  describe('Test function createNewProduct', () => {
+    const product = [{ id: 1, name: 'Martelo de Thor', quantity: 10 }];
+
+    beforeEach(() => {
+      sinon.stub(connection, 'execute').resolves([product]);
+    });
+
+    afterEach(() => {
+      connection.execute.restore();
+    })
+
+    it('Returns created product', async () => {
+      const { name, quantity } = { name: 'Lança', quantity: 5 };
+      const response = await modelProducts.createNewProduct(name, quantity);
+      expect(response).to.be.an('object');
+      expect(response).to.have.property('id');
+      expect(response).to.have.property('name');
+      expect(response).to.have.property('quantity');
+    });
+  });
+
 });
