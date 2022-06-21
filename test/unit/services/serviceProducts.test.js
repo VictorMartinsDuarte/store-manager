@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const modelProducts = require('../../../models/modelProducts');
 const serviceProducts = require('../../../services/serviceProducts');
 
-describe('Test on model layer for products', () => {
+describe('Tests on service layer for products', () => {
   describe('Test function getProducts', () => {
     const products = [
       { id: 1, name: 'Martelo de Thor', quantity: 10 },
@@ -39,13 +39,38 @@ describe('Test on model layer for products', () => {
         modelProducts.getProductsById.restore();
       });
   
-      it('Returns all products', async () => {
+      it('Returns found product by id', async () => {
         const response = await serviceProducts.getProductsById(1);
         expect(response).to.be.an('object');
         expect(response).to.have.property('id');
         expect(response).to.have.property('name');
         expect(response).to.have.property('quantity');
       }); 
+    });
+
+    describe('Test function createNewProduct', () => {
+      const products = [
+        { id: 1, name: 'Martelo de Thor', quantity: 10 },
+        { id: 2, name: 'Traje de encolhimento', quantity: 20 },
+        { id: 3, name: 'Escudo do Capitão América', quantity: 30 }
+      ];
+      
+      beforeEach(() => {
+        sinon.stub(modelProducts, 'createNewProduct').resolves(products[0]);
+      });
+
+      afterEach(() => {
+        modelProducts.createNewProduct.restore();
+      });
+
+      it('Returns created product', async () => {
+        const { name, quantity } = { name: 'lança', quantity: 5 };
+        const response = await serviceProducts.createNewProduct(name, quantity);
+        expect(response).to.be.an('object');
+        expect(response).to.have.property('id');
+        expect(response).to.have.property('name');
+        expect(response).to.have.property('quantity');
+       });
     });
   });
 });

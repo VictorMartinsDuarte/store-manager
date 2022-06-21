@@ -13,7 +13,7 @@ const createNewSale = async (newSales) => {
 
 const updatedSale = async (id, updateInfo) => {
   await updateInfo
-    .map(({ productId, quantity }) => modelSales.updateSale(id, productId, quantity));
+    .forEach(({ productId, quantity }) => modelSales.updateSale(id, productId, quantity));
   return { saleId: id, itemUpdated: updateInfo };
 };
 
