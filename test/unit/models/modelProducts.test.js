@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const connection = require('../../../models/connection');
 const modelProducts = require('../../../models/modelProducts');
 
-describe('Test on model layer for products', () => {
+describe('Tests on model layer for products', () => {
   describe('Test function getProducts', () => {
     const products = [
       { id: 1, name: 'Martelo de Thor', quantity: 10 },
@@ -69,5 +69,4 @@ describe('Test on model layer for products', () => {
       expect(response).to.have.property('quantity');
     });
   });
-
 });
