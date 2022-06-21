@@ -17,6 +17,9 @@ const getSalesById = async (req, res) => {
 const createNewSale = async (req, res) => {
   const newSales = req.body;
   const createdSales = await serviceSales.createNewSale(newSales);
+  if (createdSales === true) {
+    return res.status(422).json({ message: 'Such amount is not permitted to sell' });
+  }
   return res.status(201).json(createdSales);
 };
 

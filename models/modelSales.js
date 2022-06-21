@@ -55,6 +55,13 @@ const deleteSale = async (id) => {
   return true;
 };
 
+const productQuantity = async (productId) => {
+  const [prod] = await connection.execute(
+    'SELECT quantity FROM products WHERE id = ?', [productId],
+  );
+  return prod[0];
+};
+
 module.exports = {
   getSales,
   getSalesById,
@@ -62,4 +69,5 @@ module.exports = {
   newSaleId,
   updateSale,
   deleteSale,
+  productQuantity,
 };

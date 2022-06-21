@@ -6,6 +6,8 @@ const getSalesById = async (id) => modelSales.getSalesById(id);
 
 const createNewSale = async (newSales) => {
   const newSaleId = await modelSales.newSaleId();
+  const prodQuant = await modelSales.productQuantity(newSales[0].productId);
+  if ((prodQuant.quantity - newSales[0].quantity) < 0) return true;
   await newSales
     .map(({ productId, quantity }) => modelSales.createNewSale(newSaleId, productId, quantity));
   return { id: newSaleId, itemsSold: newSales };
