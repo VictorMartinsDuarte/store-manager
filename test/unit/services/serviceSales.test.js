@@ -63,11 +63,13 @@ describe('Tests on service layer for sales', () => {
     beforeEach(() => {
       sinon.stub(modelSales, 'createNewSale').resolves(newSale);
       sinon.stub(modelSales, 'newSaleId').resolves(1);
+      sinon.stub(modelSales, 'productQuantity').resolves(3);
     });
 
     afterEach(() => {
       modelSales.createNewSale.restore();
       modelSales.newSaleId.restore();
+      modelSales.productQuantity.restore();
     });
 
     it('Returns new sales added', async () => {
